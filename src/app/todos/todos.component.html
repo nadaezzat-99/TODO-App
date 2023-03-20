@@ -1,0 +1,58 @@
+<div class="p-3">
+  <div class="d-flex align-items-center justify-content-between">
+    <input
+      type="text"
+      class="form-control mr-1"
+      placeholder="Begin new Achievment"
+      [(ngModel)]="newTodoTitle"
+      autocomplete="off"
+    />
+    <button type="button" class="btn btn-primary" (click)="addTodo(newTodoTitle)">
+      Add
+    </button>
+  </div>
+  <div>
+    <input
+      type="text"
+      class="form-control mt-2"
+      placeholder="Search"
+      [(ngModel)]="searchText"
+      autocomplete="off"
+    />
+    <div class="btn-group mr-2 mt-2" role="group" aria-label="First group">
+      <button type="button" class="btn btn-primary me-1" autofocus="autofocus" (click)="diplayAllTodos()">All</button>
+      <button type="button" class="btn btn-primary me-1" (click)="diplayCompleted()" >Completed</button>
+      <button type="button" class="btn btn-primary me-1" (click)="displayTodo()">To DO</button>
+    </div>
+  </div>
+
+  <div *ngIf="!todos?.length" class="msg m-2">Your Todo List is Empty!</div>
+  <br />
+  <div style="display: block">
+    <ul class="list-group">
+      <li
+        class="list-group-item my-2 d-flex align-items-center justify-content-between"
+        *ngFor="let todo of todos | filter : searchText"
+      
+      >
+      
+        <input
+          class="form-check-input mx-2"
+          type="checkbox"
+          value=""
+          aria-label="..."
+          (change)="editTodoStatus(todo.id)"
+        />
+       <span   [ngClass]="todo.completed ? 'text-decoration-line-through' : 'text-decoration-none'"> {{ todo.todo }} </span>
+        <button
+          type="button"
+          class="btn btn-danger mx-2"
+          (click)="removeTodo(todo)"
+          [ngClass]="todo.completed ? 'text-decoration-none' : 'text-decoration-none'"
+        >
+          Delete
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>
