@@ -7,7 +7,7 @@ import { Todo } from './model';
   styleUrls: ['./todos.component.css'],
 })
 export class TodosComponent {
-  searchText: any;
+  searchText: string = '';
   todos: Todo[] = [
     {
       id: 1,
