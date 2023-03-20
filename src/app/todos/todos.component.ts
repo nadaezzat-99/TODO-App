@@ -63,7 +63,7 @@ export class TodosComponent {
       (todo) => todo.id === id
     );
     if (selectedTodo !== -1) {
-      this.allTodos[selectedTodo].completed = true;
+      this.allTodos[selectedTodo].completed = !this.allTodos[selectedTodo].completed;
       this.todos = [...this.allTodos];
       console.log(this.todos)
     }
